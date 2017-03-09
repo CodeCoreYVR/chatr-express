@@ -1,31 +1,27 @@
 var express = require('express');
 var router = express.Router();
 
-// def index
-//   render json: Message.all
-// end
-
-// def create
-//   Message.create!(body: params[:body])
-//   head :created
-// end
-
-// def destroy
-//   Message.find(params[:id]).destroy!
-//   head :ok
-// end
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.delete('/:id', function(req, res, next) {
+  Message
+    .findAll()
+    .then(messages => res.json({messages}))
 });
 
 router.post('/', function(req, res, next) {
-  res.send('respond with a resource');
+  const {content} = req.body;
+
+  Message
+    .create({content})
+    .then(() => res.status(201).end())
 });
 
 router.delete('/:id', function(req, res, next) {
-  res.send('respond with a resource');
+  const {id} = req.body;
+
+  Message
+    .findById(id)
+    .then(message => message.destroy())
+    .then(() => res.status(200).end())
 });
 
 module.exports = router;
