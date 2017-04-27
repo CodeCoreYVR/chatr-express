@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('./partials/header') %>
+
+<h1>Chatr</h1>
+
+<form id="new-message">
+  <textarea name="body" placeholder="Type your message..."></textarea>
+  <input type="submit" value='Post Message' />
+</form>
+
+<ul id="messages"></ul>
+
+<%- include('./partials/footer') %>

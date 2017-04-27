@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const {Message} = require('../models');
 
-router.delete('/:id', function(req, res, next) {
+router.get('/', function(req, res, next) {
   Message
     .findAll()
     .then(messages => res.json({messages}))
