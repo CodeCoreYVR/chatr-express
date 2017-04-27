@@ -5,7 +5,7 @@ const {Message} = require('../models');
 router.get('/', function(req, res, next) {
   Message
     .findAll()
-    .then(messages => res.json({messages}))
+    .then(messages => res.json(messages))
 });
 
 router.post('/', function(req, res, next) {
