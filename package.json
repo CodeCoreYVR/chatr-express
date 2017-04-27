@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "debug": "nodemon --inspect ./bin/www"
+    "debug": "nodemon --inspect ./bin/www",
+    "db:setup": "dropdb --if-exists --echo chatr_dev && createdb --echo chatr_dev && sequelize db:migrate && sequelize db:seed:all"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
