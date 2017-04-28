@@ -4,7 +4,7 @@ const {Message} = require('../models');
 
 router.get('/', function(req, res, next) {
   Message
-    .findAll()
+    .findAll({order: [['createdAt', 'DESC']]})
     .then(messages => res.json(messages))
 });
 
@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-  const {id} = req.body;
+  const {id} = req.params;
 
   Message
     .findById(id)
