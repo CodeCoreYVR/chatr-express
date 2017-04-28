@@ -9,6 +9,8 @@ yarn
 yarn db:setup
 ```
 
+Go to `http://localhost:3434` to view the app.
+
 Write your client-side JavaScript in `public/javascripts/main.js`!
 
 ✨🤓✨
