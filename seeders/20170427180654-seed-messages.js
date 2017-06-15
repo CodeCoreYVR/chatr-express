@@ -1,9 +1,8 @@
 'use strict';
 const {Message} = require('../models');
 
-
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up (queryInterface, Sequelize) {
     const messages = [
       `What is it that you want, exactly?`,
       `Peace. Prosperity. A land where the powerful do not prey on the powerless.`,
@@ -14,7 +13,7 @@ module.exports = {
     return Promise.all(messages);
   },
 
-  down: function (queryInterface, Sequelize) {
+  down (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Messages', null, {});
   }
 };
