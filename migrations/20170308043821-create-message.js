@@ -11,6 +11,14 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
+      flagged: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+      },
+      username: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

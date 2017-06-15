@@ -11,10 +11,10 @@ module.exports = {
   },
 
   async create (req, res, next) {
-    const {content} = req.body;
+    const {username, flagged, content} = req.body;
 
     try {
-      await Message.create({content});
+      await Message.create({username, flagged, content});
       res.status(201).end();
     } catch (error) {
       res.json({error});
@@ -23,11 +23,11 @@ module.exports = {
 
   async update (req, res, next) {
     const {id} = req.params;
-    const {content} = req.body;
+    const {username, flagged, content} = req.body;
 
     try {
       const message = await Message.findById(id);
-      await message.update({content});
+      await message.update({username, content, flagged});
       res.status(200).end();
     } catch (error) {
       res.json({error});
