@@ -1,10 +1,11 @@
 // 🤖 M O D U L E S
-const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
+const multer = require('multer');
+const express = require('express');
+const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const sassMiddleware = require('node-sass-middleware');
 
 const home = require('./routes/home');
@@ -20,6 +21,9 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// multer middleware is required to support `multipart/form-data`
+// which is used by any fetch request made with a `FormData` body
+app.use(multer().none());
 app.use(cookieParser());
 app.use(sassMiddleware({
   src: path.join(__dirname, 'assets'),
