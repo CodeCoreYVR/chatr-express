@@ -1,4 +1,5 @@
-public/stylesheets
+public/stylesheets/*.css.map
+public/stylesheets/*.css
 
 # Created by https://www.gitignore.io/api/node,linux,macos,window
 
