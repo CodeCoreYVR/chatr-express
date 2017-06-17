@@ -3,9 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "heroku-postbuild": "npm rebuild node-sass",
     "start": "nodemon ./bin/www",
     "debug": "nodemon --inspect ./bin/www",
-    "db:setup": "dropdb --if-exists --echo chatr_dev && createdb --echo chatr_dev && sequelize db:migrate && sequelize db:seed:all"
+    "db:setup": "dropdb --if-exists --echo chatr_dev && createdb --echo chatr_dev && yarn db:migrate && yarn db:seed",
+    "db:migrate": "sequelize db:migrate",
+    "db:seed": "sequelize db:seed:all"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -20,9 +23,10 @@
     "pg": "^6.2.4",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.1.0",
-    "serve-favicon": "~2.3.2"
-  },
-  "devDependencies": {
+    "serve-favicon": "~2.3.2",
     "sequelize-cli": "^2.7.0"
+  },
+  "engines": {
+    "node": "8.0.0"
   }
 }
