@@ -6,7 +6,7 @@ To get started:
 git clone git@github.com:CodeCoreYVR/chatr-express.git
 cd chatr-express
 npm i
-npm r db:setup
+npm run db:setup
 ```
 
 Go to `http://localhost:3434` to view the app.
