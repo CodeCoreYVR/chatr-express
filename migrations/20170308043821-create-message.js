@@ -1,14 +1,16 @@
-'use strict';
+"use strict";
 module.exports = {
-  up (queryInterface, Sequelize) {
-    return queryInterface.createTable('Messages', {
+  up(queryInterface, Sequelize) {
+    const { Op } = Sequelize;
+
+    return queryInterface.createTable("Messages", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      content: {
+      body: {
         type: Sequelize.TEXT
       },
       flagged: {
@@ -29,7 +31,7 @@ module.exports = {
       }
     });
   },
-  down (queryInterface, Sequelize) {
-    return queryInterface.dropTable('Messages');
+  down(queryInterface, Sequelize) {
+    return queryInterface.dropTable("Messages");
   }
 };
