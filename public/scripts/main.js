@@ -218,16 +218,6 @@ function createMessage(message) {
   });
 }
 
-function updateMessage(message, id) {
-    return fetch(`/messages/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(message)
-    });
-  }
-
 function renderMessages(messages = []) {
   return messages
     .map(
@@ -237,7 +227,6 @@ function renderMessages(messages = []) {
           <strong>${message.id}</strong>
           ${message.username} -
           ${message.body}
-          <i data-id="${message.id}" data-flagged="${message.flagged}" class="flag-button fa fa-lg fa-flag${message.flagged ? "" : "-o"}"></i>
         </p>
         <button data-id="${message.id}" class="delete-button">
           Delete
@@ -301,16 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         refreshMessages(messagesUl);
       });
     }
-
-    if (target.matches('.flag-button')) {
-        event.preventDefault();
-        const messageId = target.getAttribute('data-id');
-        const flagged = target.getAttribute('data-flagged') === "false";
-        updateMessage({ flagged }, messageId).then(() => {
-          refreshMessages(messagesUl);
-        });
-    }
-
   });
 });
 
