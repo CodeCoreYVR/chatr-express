@@ -226,7 +226,7 @@ function renderMessages(messages = []) {
         <p>
           <strong>${message.id}</strong>
           ${message.username} -
-          ${message.body}
+          ${message.content}
         </p>
         <button data-id="${message.id}" class="delete-button">
           Delete
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createMessage({
       username: formData.get('username'),
-      body: formData.get('body')
+      content: formData.get('content')
     }).then(() => refreshMessages(messagesUl));
   });
 
