@@ -67,6 +67,10 @@ input[type='submit'] {
   color: #fff;
 } 
 
-.flagged {
-  border: 1px solid red;
+.flag-button blue {
+  background: blue;
+}
+
+.flag-button green {
+  background: green;
 }
