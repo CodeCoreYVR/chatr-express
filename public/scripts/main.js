@@ -237,7 +237,7 @@ function renderMessages(messages = []) {
           <strong>${message.id}</strong>
           ${message.username} -
           ${message.body}
-          <button data-id="${message.id}" data-flagged="${message.flagged}" class="flag-button" style="background:${message.flagged ? 'lightblue' : 'yellow'}">Flag</button>
+          <i data-id="${message.id}" data-flagged="${message.flagged}" class="flag-button fa fa-lg fa-flag${message.flagged ? "" : "-o"}"></i>
         </p>
         <button data-id="${message.id}" class="delete-button">
           Delete
@@ -293,7 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // This is called event delegation.
   messagesUl.addEventListener('click', event => {
     const { target } = event;
-    const flagButton = target.closest('.flag-button')
 
     if (target.matches('.delete-button')) {
       event.preventDefault();
@@ -303,22 +302,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-
-    if (flagButton) {
-        const messageId = target.getAttribute('data-id')
-        let messageFlagged = target.getAttribute('data-flagged');
-        
-        if (messageFlagged === 'false'){
-            event.preventDefault();
-            updateMessage({ "flagged": true }, messageId).then(() => {
-            refreshMessages(messagesUl);
-            });
-        } else {
-            event.preventDefault();
-            updateMessage({ "flagged": false }, messageId).then(() => {
-            refreshMessages(messagesUl);
-            });
-        }
+    if (target.matches('.flag-button')) {
+        event.preventDefault();
+        const messageId = target.getAttribute('data-id');
+        const flagged = target.getAttribute('data-flagged') === "false";
+        updateMessage({ flagged }, messageId).then(() => {
+          refreshMessages(messagesUl);
+        });
     }
 
   });
