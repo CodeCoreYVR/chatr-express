@@ -202,6 +202,8 @@
 
 // AJAX Helpers
 
+let filter = false;
+
 function deleteMessage(id) {
   return fetch(`/messages/${id}`, {
     method: 'DELETE'
@@ -230,9 +232,12 @@ function updateMessage(message, id) {
 
 function renderMessages(messages = []) {
   return messages
+    .filter(message => !filter || message.flagged)
+    // sort by id, desc. to sort asc, m1.id - m2.id
+    .sort((m1, m2) => m2.id - m1.id)
     .map(
       message => `
-      <li>
+      <li class="${message.flagged ? "flagged" : ""}">
         <p>
           <strong>${message.id}</strong>
           ${message.username} -
@@ -259,6 +264,7 @@ function refreshMessages(node) {
 document.addEventListener('DOMContentLoaded', () => {
   const messagesUl = document.querySelector('#messages');
   const newMessageForm = document.querySelector('#new-message');
+  const filterButton = document.querySelector('#filter-messages');
 
   // Every second, re-render the messages inside
   // of the ul#message node
@@ -273,6 +279,13 @@ document.addEventListener('DOMContentLoaded', () => {
       body: formData.get('body')
     }).then(() => refreshMessages(messagesUl));
   });
+
+  filterButton.addEventListener('click', event => {
+    event.preventDefault();
+    filter = !filter;
+    filterButton.innerHTML = `View ${filter ? "All" : "Flagged"} Messages`;
+    refreshMessages(messagesUl)
+  })
 
   // The `.delete-button`s are not on the page initially
   // or event after the dom content is loaded. Once they
