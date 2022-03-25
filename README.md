@@ -3,7 +3,7 @@
 To get started:
 
 ```bash
-git clone git@github.com:CodeCoreYVR/chatr-express.git
+git clone https://github.com/CodeCoreYVR/chatr-express.git
 cd chatr-express
 nvm install 12.18.4
 nvm use 12.18.4
