@@ -12,6 +12,7 @@ npm i
 npm install -g json-server
 npm run db:setup
 npm run db:seed
+npm start
 ```
 
 Go to `http://localhost:3434` to view the app.
